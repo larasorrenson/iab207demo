@@ -4,14 +4,25 @@
 
 {% block content %}
 
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-md-12">
-        <h1>Add Travel Destination</h1>
-        <p>Enter a country that you will help clients travel to.</p>
-        {{ render_form(form) }}
-      </div>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4">Add Travel Destination</h1>
+            <p class="lead">Help Your Clients Explore New Destinations</p>
+        </div>
     </div>
-  </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Destination Details</h5>
+                    <p class="card-text">Enter the country and details of the travel destination below.</p>
+                    {{ render_form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
