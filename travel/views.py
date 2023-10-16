@@ -11,10 +11,13 @@ def index():
 
 @mainbp.route('/search')
 def search():
-    if request.args['search'] and request.args['search'] != "":
-        print(request.args['search'])
-        query = "%" + request.args['search'] + "%"
-        destinations = db.session.scalars(db.select(Destination)).where(Destination.description.like(query))
-        return render_template('index.html', destinations=destinations)
+    search_term = request.args.get('search', '')
+
+    if search_term:
+        query = "%" + search_term + "%"
+        destinations = db.session.execute(db.select(Destination).where(Destination.description.like(query)))
     else:
-        return redirect(url_for('main.index'))
+        destinations = db.session.execute(db.select(Destination))
+
+    destinations = destinations.scalars().all()
+    return render_template('index.html', destinations=destinations)

@@ -56,7 +56,13 @@ def create_app():
     #this creates a dictionary of variables that are available to all templates
     @app.context_processor
     def get_context():
-      year = datetime.datetime.today().year
+      now = datetime.datetime.today()
+      year = now.year
       return dict(year=year)
+    
+
+    @app.template_filter('dateformat')
+    def format_date(date, format='%B %d, %Y %I:%M %p'):
+      return date.strftime(format)
 
     return app
